@@ -7,9 +7,11 @@ const palettes = {
   [ThemeModes.DARK]: {
     primary: {
       purple: "#7B61FF",
+      purpleHover: "#917CFF",
       main: "#000000",
       contextual: "#AFB2B6",
       contrastText: "#ffffff",
+      inputBackground: "#323537",
     },
     secondary: {
       error: "#FF5154",
@@ -27,6 +29,7 @@ const palettes = {
       main: "#FFFFFF",
       contextual: "#AFB2B6",
       contrastText: "#000000",
+      inputBackground: "#FFFFFF",
     },
     secondary: {
       error: "#FF5154",
