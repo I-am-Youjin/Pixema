@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const StyledBar = styled("div")`
-  position: sticky;
-  width: 306px;
-  height: calc(100vh - 104px);
-  top: 40px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  min-width: 306px;
 
   @media (max-width: 1280px) {
     display: none;
@@ -12,9 +13,12 @@ export const StyledBar = styled("div")`
 `;
 
 export const StyledUl = styled("ul")`
+  position: sticky;
   display: flex;
   flex-direction: column;
   gap: 40px;
+  top: 152px;
+  margin-bottom: calc(100vh - 456px);
 `;
 
 export const StyledLi = styled("li")`
@@ -47,9 +51,8 @@ export const StyledLi = styled("li")`
 `;
 
 export const StyledRigths = styled("p")`
-  position: absolute;
-  bottom: 0;
-  /* left: 62px; */
+  position: sticky;
+  bottom: 64px;
   color: ${(prop) => prop.theme.palette.primary.contextual};
   font-family: "Exo 2";
   font-size: 16px;

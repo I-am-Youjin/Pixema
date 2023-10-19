@@ -6,12 +6,10 @@ import {
   StyledLi,
   StyledRigths,
 } from "./styles";
-import Logo from "../Logo/Logo";
 
 const DesktopNavBar: React.FC = () => {
   return (
     <StyledBar>
-      <Logo />
       <StyledUl>
         <StyledLi>
           <svg

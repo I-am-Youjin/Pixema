@@ -21,6 +21,7 @@ const palettes = {
       light: "#80858B",
       dark: "#242426",
       graphite: "#323537",
+      white: "#FFFFFF",
     },
   },
   [ThemeModes.LIGHT]: {
@@ -39,6 +40,7 @@ const palettes = {
       light: "#80858B",
       dark: "#242426",
       graphite: "#323537",
+      white: "#FFFFFF",
     },
   },
 };

@@ -7,10 +7,25 @@ import FilmCard from "../../components/FilmCard/FilmCard";
 const MainPage = () => {
   return (
     <StyledConteiner>
-      <DesktopNavBar />
+      <Header></Header>
       <ContentWrapper>
-        <Header></Header>
+        <DesktopNavBar />
         <FilmsWrapper>
+          <FilmCard></FilmCard>
+          <FilmCard></FilmCard>
+          <FilmCard></FilmCard>
+          <FilmCard></FilmCard>
+          <FilmCard></FilmCard>
+          <FilmCard></FilmCard>
+          <FilmCard></FilmCard>
+          <FilmCard></FilmCard>
+          <FilmCard></FilmCard>
+          <FilmCard></FilmCard>
+          <FilmCard></FilmCard>
+          <FilmCard></FilmCard>
+          <FilmCard></FilmCard>
+          <FilmCard></FilmCard>
+          <FilmCard></FilmCard>
           <FilmCard></FilmCard>
           <FilmCard></FilmCard>
           <FilmCard></FilmCard>

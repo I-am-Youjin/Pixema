@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const StyledLogoWrapper = styled("div")`
   padding: 8px 0;
-  margin-bottom: 64px;
   display: flex;
+  margin-right: 148px;
   @media (max-width: 1280px) {
-    margin-bottom: 0;
+    margin-right: 78px;
   }
 `;
 
