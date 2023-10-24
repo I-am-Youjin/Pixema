@@ -1,21 +1,19 @@
 import { useDispatch } from "react-redux";
 import { themeActions } from "../Actions/themeActions";
 import { bindActionCreators } from "redux";
-// import { postsActions } from "../Actions/postsActions";
-// import { getPostsAsync } from "../Actions/getPostsAsync";
-// import { signUpUser } from "../Actions/signUpUser";
-// import { getPostByIdAsync } from "../Actions/getPostByIdAsync";
-// import { selectedPostActions } from "../Actions/selectedPostAction";
-// import { loginUser, authorizeUser } from "../Actions/loginUser";
-// import { logInActions } from "../Actions/loginActions";
-// import { getMyPosts } from "../Actions/getPostsAsync";
-// import { addPost } from "../Actions/addPost";
+import { getFilmsAsync, getFilmsRatingAsync } from "../Actions/getFilmsAsync";
+import { filmsActions } from "../Actions/filmsActions";
+import { isFetchingActions } from "../Actions/isFetchingAction";
 
 export const useActions = () => {
   const dispatch = useDispatch();
   return bindActionCreators(
     {
       ...themeActions,
+      getFilmsAsync,
+      getFilmsRatingAsync,
+      ...filmsActions,
+      ...isFetchingActions,
       // ...postsActions,
       // getPostsAsync,
       // signUpUser,

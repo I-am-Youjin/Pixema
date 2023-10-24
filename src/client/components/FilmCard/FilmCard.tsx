@@ -1,20 +1,24 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import {
   StyledImgWrapper,
   StyledImg,
   StyledTitle,
   CardWrapper,
+  // TextConteiner,
 } from "./styles";
 import RateMarker from "./RateMarker/RateMarker";
+import { FilmDataBySearch } from "../../../types";
 
-const FilmCard = () => {
+const FilmCard: React.FC<FilmDataBySearch> = ({ filmData }) => {
   return (
     <CardWrapper>
       <StyledImgWrapper>
-        <RateMarker>4</RateMarker>
-        <StyledImg src="https://m.media-amazon.com/images/M/MV5BMGQ5YTM1NmMtYmIxYy00N2VmLWJhZTYtN2EwYTY3MWFhOTczXkEyXkFqcGdeQXVyNTA2NTI0MTY@._V1_SX300.jpg" />
+        <RateMarker>{filmData.rating}</RateMarker>
+        <StyledImg src={filmData.Poster} />
       </StyledImgWrapper>
-      <StyledTitle>Lorem ipsum</StyledTitle>
+      {/* <TextConteiner> */}
+      <StyledTitle data-title={filmData.Title}>{filmData.Title}</StyledTitle>
+      {/* </TextConteiner> */}
     </CardWrapper>
   );
 };
