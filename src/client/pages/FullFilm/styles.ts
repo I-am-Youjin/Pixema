@@ -6,6 +6,7 @@ export const PageWrapper = styled("div")`
 `;
 export const LeftContainer = styled("div")`
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
   height: 100%;
   width: 266px;

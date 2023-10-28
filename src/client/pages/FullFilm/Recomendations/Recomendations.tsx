@@ -24,25 +24,85 @@ const Recomendations = () => {
       {
         breakpoint: 1860,
         settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 1340,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 860,
+        settings: {
           slidesToShow: 1,
         },
       },
       // {
-      //   breakpoint: 1810,
+      //   breakpoint: 1800,
       //   settings: {
       //     slidesToShow: 3.5,
       //   },
       // },
       // {
-      //   breakpoint: 600,
+      //   breakpoint: 1740,
       //   settings: {
-      //     slidesToShow: 1,
+      //     slidesToShow: 3.1,
+      //   },
+      // },
+      // {
+      //   breakpoint: 1660,
+      //   settings: {
+      //     slidesToShow: 3,
+      //   },
+      // },
+      // {
+      //   breakpoint: 1600,
+      //   settings: {
+      //     slidesToShow: 2.8,
+      //   },
+      // },
+      // {
+      //   breakpoint: 1580,
+      //   settings: {
+      //     slidesToShow: 2.8,
+      //   },
+      // },
+      // {
+      //   breakpoint: 1510,
+      //   settings: {
+      //     slidesToShow: 2.6,
+      //   },
+      // },
+      // {
+      //   breakpoint: 1440,
+      //   settings: {
+      //     slidesToShow: 2,
+      //   },
+      // },
+      // {
+      //   breakpoint: 1370,
+      //   settings: {
+      //     slidesToShow: 1.8,
       //   },
       // },
     ],
   };
   const id = useParams();
-  const films = useTypedSelector((state) => state.films.allFilms);
+  const films = useTypedSelector((state: any) => state.films.allFilms);
   return (
     <ComponentWrapper>
       <StyledTitleWrapper>

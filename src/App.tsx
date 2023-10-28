@@ -11,7 +11,7 @@ import { useTypedSelector } from "./store/hooks/useTypedSelector";
 // import { useActions } from "./store/hooks/useActions";
 
 function App() {
-  const userTheme = useTypedSelector((state) => state.theme.themeMode);
+  const userTheme = useTypedSelector((state: any) => state.theme.themeMode);
   const currentTheme = createTheme(userTheme);
   // const isLoggedIn = useTypedSelector((state) => state.session.isLoggedIn);
   // const { authorizeUser } = useActions();

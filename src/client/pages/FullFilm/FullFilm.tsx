@@ -21,7 +21,7 @@ import SetFavoriteShareBtn from "./SetFavotiteShareBtn/SetFavoriteShareBtn";
 import RateMarker from "../../components/FilmCard/RateMarker/RateMarker";
 import Recomendations from "./Recomendations/Recomendations";
 const FullFilm = () => {
-  const film = useTypedSelector((state) => state.films.receivedFilm);
+  const film = useTypedSelector((state: any) => state.films.receivedFilm);
 
   return (
     film && (
