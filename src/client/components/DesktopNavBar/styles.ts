@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const StyledBar = styled("div")`
   position: relative;
@@ -19,6 +20,10 @@ export const StyledUl = styled("ul")`
   gap: 40px;
   top: 152px;
   margin-bottom: calc(100vh - 456px);
+  &a {
+    color: ${(prop) => prop.theme.palette.primary.purple};
+    fill: ${(prop) => prop.theme.palette.primary.purple};
+  }
 `;
 
 export const StyledLi = styled("li")`
@@ -41,11 +46,23 @@ export const StyledLi = styled("li")`
     }
   }
 
-  &:active {
-    color: ${(prop) => prop.theme.palette.primary.purple};
+  & a {
+    display: flex;
+    gap: 20px;
+    text-decoration: none;
+    color: ${(prop) => prop.theme.palette.secondary.light};
+    transition: all.5s;
 
-    & path {
-      fill: ${(prop) => prop.theme.palette.primary.purple};
+    &:hover {
+      color: ${(prop) => prop.theme.palette.primary.purpleHover};
+    }
+
+    &.active {
+      color: ${(prop) => prop.theme.palette.primary.purple};
+
+      & path {
+        fill: ${(prop) => prop.theme.palette.primary.purple};
+      }
     }
   }
 `;
@@ -67,4 +84,8 @@ export const StyledText = styled("p")`
   font-style: normal;
   font-weight: 600;
   line-height: 24px;
+`;
+
+export const CustomLink = styled("Link")`
+  color: purple;
 `;

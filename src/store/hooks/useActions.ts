@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { getFilmsAsync, getFilmsRatingAsync } from "../Actions/getFilmsAsync";
 import { filmsActions } from "../Actions/filmsActions";
 import { isFetchingActions } from "../Actions/isFetchingAction";
+import { getFilmByIdAsync } from "../Actions/getFilmsAsync";
 
 export const useActions = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export const useActions = () => {
       getFilmsRatingAsync,
       ...filmsActions,
       ...isFetchingActions,
+      getFilmByIdAsync,
       // ...postsActions,
       // getPostsAsync,
       // signUpUser,

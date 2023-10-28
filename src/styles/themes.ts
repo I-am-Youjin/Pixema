@@ -26,7 +26,7 @@ const palettes = {
   },
   [ThemeModes.LIGHT]: {
     primary: {
-      purple: "##7B61FF",
+      purple: "#7B61FF",
       main: "#FFFFFF",
       contextual: "#AFB2B6",
       contrastText: "#000000",

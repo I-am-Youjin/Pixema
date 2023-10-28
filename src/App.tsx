@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "./styles/App.css";
 import { ThemeProvider } from "styled-components";
 import { createTheme } from "./styles/themes";
-// import PostsPage from "./client/pages/PostsPage/PostsPage";
+import MainPage from "./client/pages/MainPage/MainPage";
 import { Routes, Route } from "react-router-dom";
-// import { userRoutes } from "./client/Routes/userRoutse";
+import { userRoutes } from "./client/Routes/UserRoutes";
 // import PrivateRoute from "./client/Routes/PrivateRoute/PrivateRoute";
 import Layout from "../src/Layout/Layout";
 import { useTypedSelector } from "./store/hooks/useTypedSelector";
@@ -25,26 +25,26 @@ function App() {
       <div className="app">
         <Routes>
           <Route path="/" element={<Layout />}>
-            {/* <Route index element={<PostsPage />} />
+            <Route index element={<MainPage />} />
             {userRoutes.map(
-              ({ path, id, Component, componentAdditionalProps, strict }) => {
+              ({ path, id, Component, componentAdditionalProps }) => {
                 return (
                   <Route
                     key={id}
                     path={path}
                     element={
-                      !strict ? (
-                        <Component {...componentAdditionalProps} />
-                      ) : (
-                        <PrivateRoute>
-                          <Component {...componentAdditionalProps} />
-                        </PrivateRoute>
-                      )
+                      // !strict ? (
+                      <Component {...componentAdditionalProps} />
+                      // ) : (
+                      //   <PrivateRoute>
+                      //     <Component {...componentAdditionalProps} />
+                      //   </PrivateRoute>
+                      // )
                     }
                   />
                 );
               }
-            )} */}
+            )}
           </Route>
         </Routes>
       </div>

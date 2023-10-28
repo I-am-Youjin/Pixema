@@ -6,7 +6,7 @@ export const StyledHeader = styled("header")`
   display: flex;
   padding: 40px 0 56px;
   background-color: ${(prop) => prop.theme.palette.primary.main};
-  z-index: 10;
+  z-index: 2;
 
   @media (max-width: 768px) {
     padding-bottom: 48px;

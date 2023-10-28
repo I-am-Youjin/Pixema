@@ -5,7 +5,7 @@ export const StyledInput = styled("input")`
   width: 100%;
   padding: 20px 16px;
   border-radius: 10px;
-  border: none;
+  border: 2px solid ${(prop) => prop.theme.palette.secondary.graphite};
   color: ${(prop) => prop.theme.palette.primary.contrastText};
   background-color: ${(prop) => prop.theme.palette.primary.inputBackground};
   outline: none;

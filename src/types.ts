@@ -1,6 +1,3 @@
-import { type } from "os";
-import { ReactNode } from "react";
-
 export type FilmBySearch = {
   Title: string;
   Year: string;
@@ -10,25 +7,25 @@ export type FilmBySearch = {
   rating: string;
 };
 
-// export type FilmBySearch = {
-//   kinopoiskId: string;
-//   imdbId: string;
-//   nameRu: string;
-//   nameEn: string;
-//   nameOriginal: string;
-//   ratingKinopoisk: string;
-//   ratingImdb: string;
-//   year: string;
-//   type: string;
-//   posterUrl: string;
-//   posterUrlPreview: string;
-// };
+export type FilmRatingData = {
+  rating: string;
+  id: string;
+};
 
 export type FilmDataBySearch = {
   filmData: FilmBySearch;
 };
 
 export type defaultStateType = Record<
-  "allFilms" | "favorite" | "filmsRating",
-  null | FilmBySearch[]
+  "allFilms" | "favorite" | "filmsRating" | "results" | "receivedFilm",
+  null | FilmBySearch[] | FilmRatingData[]
 >;
+
+export type UserRoutes = {
+  id: string | number;
+  path: string;
+  Component: React.FC<any>;
+  componentAdditionalProps?: any;
+  strict?: boolean;
+  title?: string;
+};

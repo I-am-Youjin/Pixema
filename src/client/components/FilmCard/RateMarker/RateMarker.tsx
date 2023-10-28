@@ -1,23 +1,28 @@
-import React, { PropsWithChildren } from "react";
+import React, { ReactNode, useState } from "react";
 import { GreenMarker, YellowMarker, OrangeMarker, Text } from "./styles";
 
-const RateMarker: React.FC<PropsWithChildren> = ({ children }) => {
+interface RateMarkerType {
+  children: ReactNode;
+  isAbsolute: boolean;
+}
+
+const RateMarker: React.FC<RateMarkerType> = ({ children, isAbsolute }) => {
   const n = children;
   if ((n! as number) < 5) {
     return (
-      <OrangeMarker>
+      <OrangeMarker $isAbsolute={isAbsolute}>
         <Text>{children}</Text>
       </OrangeMarker>
     );
   } else if ((n! as number) < 7) {
     return (
-      <YellowMarker>
+      <YellowMarker $isAbsolute={isAbsolute}>
         <Text>{children}</Text>
       </YellowMarker>
     );
   } else {
     return (
-      <GreenMarker>
+      <GreenMarker $isAbsolute={isAbsolute}>
         <Text>{children}</Text>
       </GreenMarker>
     );

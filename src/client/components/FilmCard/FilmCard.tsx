@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   StyledImgWrapper,
   StyledImg,
@@ -8,17 +9,27 @@ import {
 } from "./styles";
 import RateMarker from "./RateMarker/RateMarker";
 import { FilmDataBySearch } from "../../../types";
+import { useActions } from "../../../store/hooks/useActions";
+import { useTypedSelector } from "../../../store/hooks/useTypedSelector";
 
 const FilmCard: React.FC<FilmDataBySearch> = ({ filmData }) => {
+  const { getFilmByIdAsync } = useActions();
+  const film = useTypedSelector((state) => state.films.receivedFilm);
+  const navigate = useNavigate();
+
+  const handleOpenFullFilm = () => {
+    getFilmByIdAsync({ i: filmData.imdbID });
+    navigate(`/film/${filmData.imdbID}`);
+  };
   return (
     <CardWrapper>
       <StyledImgWrapper>
-        <RateMarker>{filmData.rating}</RateMarker>
+        <RateMarker isAbsolute={true}>{filmData.rating}</RateMarker>
         <StyledImg src={filmData.Poster} />
       </StyledImgWrapper>
-      {/* <TextConteiner> */}
-      <StyledTitle data-title={filmData.Title}>{filmData.Title}</StyledTitle>
-      {/* </TextConteiner> */}
+      <StyledTitle data-title={filmData.Title} onClick={handleOpenFullFilm}>
+        {filmData.Title}
+      </StyledTitle>
     </CardWrapper>
   );
 };

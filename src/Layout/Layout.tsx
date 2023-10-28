@@ -1,19 +1,20 @@
 import React from "react";
 import Header from "./Header/Header";
-// import Footer from "./footer/Footer";
 import Main from "./Main/Main";
 import { Outlet } from "react-router-dom";
-import { StyledLayout } from "./styles";
-import MainPage from "../client/pages/MainPage/MainPage";
+import { StyledLayout, ContentWrapper } from "./styles";
+import DesktopNavBar from "../client/components/DesktopNavBar/DesktopNavBar";
 
 const Layout = () => {
   return (
     <StyledLayout>
       <Main>
-        <MainPage></MainPage>
-        <Outlet />
+        <Header></Header>
+        <ContentWrapper>
+          <DesktopNavBar />
+          <Outlet />
+        </ContentWrapper>
       </Main>
-      {/* <Footer></Footer> */}
     </StyledLayout>
   );
 };

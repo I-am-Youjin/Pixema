@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const GreenMarker = styled("div")`
-  position: absolute;
+export const GreenMarker = styled("div")<{ $isAbsolute: boolean }>`
+  position: ${(prop) => (prop.$isAbsolute ? "absolute" : "static")};
   top: 20px;
   left: 20px;
   display: flex;
@@ -12,8 +12,8 @@ export const GreenMarker = styled("div")`
   border-radius: 6px;
   background-color: ${(prop) => prop.theme.palette.secondary.green};
 `;
-export const OrangeMarker = styled("div")`
-  position: absolute;
+export const OrangeMarker = styled("div")<{ $isAbsolute: boolean }>`
+  position: ${(prop) => (prop.$isAbsolute ? "absolute" : "static")};
   top: 20px;
   left: 20px;
   display: flex;
@@ -24,8 +24,8 @@ export const OrangeMarker = styled("div")`
   border-radius: 6px;
   background-color: ${(prop) => prop.theme.palette.secondary.orange};
 `;
-export const YellowMarker = styled("div")`
-  position: absolute;
+export const YellowMarker = styled("div")<{ $isAbsolute: boolean }>`
+  position: ${(prop) => (prop.$isAbsolute ? "absolute" : "static")};
   top: 20px;
   left: 20px;
   display: flex;

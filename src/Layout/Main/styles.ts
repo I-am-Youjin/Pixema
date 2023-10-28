@@ -5,7 +5,7 @@ export const StyledSection = styled("section")`
   min-height: 100vh;
   padding: 0px 62px 64px;
   margin: 0 auto;
-  /* min-height: calc(100vh - 140px); */
+  /* overflow: hidden; */
   @media (max-width: 1440px) {
     padding: 0px 128px;
   }

@@ -1,12 +1,5 @@
 import styled from "styled-components";
 
-export const StyledConteiner = styled("div")`
-  display: flex;
-  flex-direction: column;
-`;
-export const ContentWrapper = styled("div")`
-  display: flex;
-`;
 export const FilmsWrapper = styled("div")`
   display: flex;
   align-content: flex-start;
@@ -30,4 +23,5 @@ export const StyledWrapper = styled("div")`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  transition: 0.3s;
 `;

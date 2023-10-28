@@ -1,12 +1,13 @@
 import { baseActionTypeWithPayload } from "../Actions/types";
 import { actionTypes } from "../Actions/filmsActions";
-import { FilmBySearch } from "../../types";
-import { defaultStateType } from "../../types";
+import { FilmBySearch, defaultStateType, FilmRatingData } from "../../types";
 
 const defaultState: defaultStateType = {
   allFilms: null,
   favorite: [],
   filmsRating: [],
+  results: null,
+  receivedFilm: null,
 };
 
 export const filmsReducer = (
@@ -16,30 +17,52 @@ export const filmsReducer = (
   switch (action.type) {
     case actionTypes.SET_FILMS:
       if (Array.isArray(action.payload.Search)) {
-        return {
-          ...state,
-          allFilms: [
-            ...(action.payload.Search.map((film: FilmBySearch, id: number) => ({
-              ...film,
-              id: id,
-              isFavorite: false,
-              // rating: (state.filmsRating as []).find(
-              //   (film: any) => action.payload.id
-              // ),
-            })) as FilmBySearch[]),
-          ],
-        };
+        if (Array.isArray(state.allFilms)) {
+          return {
+            ...state,
+            results: action.payload.totalResults,
+            allFilms: (state.allFilms as FilmBySearch[]).concat([
+              ...(action.payload.Search.map(
+                (film: FilmBySearch, id: number) => ({
+                  ...film,
+                  id: id,
+                  isFavorite: false,
+                  rating: (state.filmsRating as FilmRatingData[]).find(
+                    (f, idx) => id === idx
+                  )!.rating,
+                })
+              ) as FilmBySearch[]),
+            ]),
+          };
+        } else {
+          return {
+            ...state,
+            results: action.payload.totalResults,
+            allFilms: [
+              ...(action.payload.Search.map(
+                (film: FilmBySearch, id: number) => ({
+                  ...film,
+                  id: id,
+                  isFavorite: false,
+                })
+              ) as FilmBySearch[]),
+            ],
+          };
+        }
       }
       return state;
+    case actionTypes.GET_FILM:
+      return {
+        ...state,
+        receivedFilm: action.payload,
+      };
     case actionTypes.SET_FILMS_RATING:
       return {
         ...state,
         allFilms: (state.allFilms as []).map(
           (filmData: any, dataId: number) => ({
             ...filmData,
-            rating: action.payload.find(
-              (film: any, id: number) => id === dataId
-            ).rating,
+            rating: ((action.payload as [])[dataId] as FilmRatingData).rating,
           })
         ),
         filmsRating: action.payload.map((film: any) => ({
