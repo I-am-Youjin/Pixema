@@ -14,8 +14,7 @@ import {
   MarksText,
   PlotAndDiscritionText,
   DiscriptionConteiner,
-  DiscriptionTypeConteiner,
-  InnerDiscriptionConteiner,
+  DiscriptionLine,
 } from "./styles";
 import SetFavoriteShareBtn from "./SetFavotiteShareBtn/SetFavoriteShareBtn";
 import RateMarker from "../../components/FilmCard/RateMarker/RateMarker";
@@ -61,42 +60,54 @@ const FullFilm = () => {
             </RateMarksWrapper>
             <PlotAndDiscritionText>{film.Plot}</PlotAndDiscritionText>
             <DiscriptionConteiner>
-              <DiscriptionTypeConteiner>
+              <DiscriptionLine>
                 <GenresAndDiscriptionTypeText>
                   Year
                 </GenresAndDiscriptionTypeText>
+                <PlotAndDiscritionText>{film.Year}</PlotAndDiscritionText>
+              </DiscriptionLine>
+              <DiscriptionLine>
                 <GenresAndDiscriptionTypeText>
                   Released
                 </GenresAndDiscriptionTypeText>
+                <PlotAndDiscritionText>{film.Released}</PlotAndDiscritionText>
+              </DiscriptionLine>
+              <DiscriptionLine>
                 <GenresAndDiscriptionTypeText>
                   BoxOffice
                 </GenresAndDiscriptionTypeText>
+                <PlotAndDiscritionText>{film.BoxOffice}</PlotAndDiscritionText>
+              </DiscriptionLine>
+              <DiscriptionLine>
                 <GenresAndDiscriptionTypeText>
                   Country
                 </GenresAndDiscriptionTypeText>
+                <PlotAndDiscritionText>{film.Country}</PlotAndDiscritionText>
+              </DiscriptionLine>
+              <DiscriptionLine>
                 <GenresAndDiscriptionTypeText>
                   Production
                 </GenresAndDiscriptionTypeText>
+                <PlotAndDiscritionText>{film.Production}</PlotAndDiscritionText>
+              </DiscriptionLine>
+              <DiscriptionLine>
                 <GenresAndDiscriptionTypeText>
                   Actors
                 </GenresAndDiscriptionTypeText>
+                <PlotAndDiscritionText>{film.Actors}</PlotAndDiscritionText>
+              </DiscriptionLine>
+              <DiscriptionLine>
                 <GenresAndDiscriptionTypeText>
                   Director
                 </GenresAndDiscriptionTypeText>
+                <PlotAndDiscritionText>{film.Director}</PlotAndDiscritionText>
+              </DiscriptionLine>
+              <DiscriptionLine>
                 <GenresAndDiscriptionTypeText>
                   Writers
                 </GenresAndDiscriptionTypeText>
-              </DiscriptionTypeConteiner>
-              <InnerDiscriptionConteiner>
-                <PlotAndDiscritionText>{film.Year}</PlotAndDiscritionText>
-                <PlotAndDiscritionText>{film.Released}</PlotAndDiscritionText>
-                <PlotAndDiscritionText>{film.BoxOffice}</PlotAndDiscritionText>
-                <PlotAndDiscritionText>{film.Country}</PlotAndDiscritionText>
-                <PlotAndDiscritionText>{film.Production}</PlotAndDiscritionText>
-                <PlotAndDiscritionText>{film.Actors}</PlotAndDiscritionText>
-                <PlotAndDiscritionText>{film.Director}</PlotAndDiscritionText>
                 <PlotAndDiscritionText>{film.Writer}</PlotAndDiscritionText>
-              </InnerDiscriptionConteiner>
+              </DiscriptionLine>
             </DiscriptionConteiner>
           </ContainerWithText>
           <Recomendations />

@@ -92,19 +92,19 @@ export const PlotAndDiscritionText = styled("p")`
 
 export const DiscriptionConteiner = styled("div")`
   display: flex;
+  flex-direction: column;
   margin-top: 40px;
   margin-bottom: 56px;
   gap: 54px;
 `;
 
-export const DiscriptionTypeConteiner = styled("div")`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
+// export const DiscriptionTypeConteiner = styled("div")`
+//   display: flex;
+//   flex-direction: column;
+//   gap: 20px;
+// `;
 
-export const InnerDiscriptionConteiner = styled("div")`
+export const DiscriptionLine = styled("div")`
   display: flex;
-  flex-direction: column;
   gap: 20px;
 `;
