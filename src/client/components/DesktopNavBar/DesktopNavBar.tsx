@@ -8,9 +8,14 @@ import {
 } from "./styles";
 import { NavLink } from "react-router-dom";
 
-const DesktopNavBar: React.FC = () => {
+interface INavBar {
+  isOpened: boolean;
+  isDesktop: boolean;
+}
+
+const DesktopNavBar: React.FC<INavBar> = ({ isOpened, isDesktop }) => {
   return (
-    <StyledBar>
+    <StyledBar $isOpened={isOpened} $isDesktop={isDesktop}>
       <StyledUl>
         <StyledLi>
           <NavLink to="/">
@@ -78,7 +83,7 @@ const DesktopNavBar: React.FC = () => {
           </NavLink>
         </StyledLi>
       </StyledUl>
-      <StyledRigths>© All Rights Reserved</StyledRigths>
+      <StyledRigths $isDesktop={isDesktop}>© All Rights Reserved</StyledRigths>
     </StyledBar>
   );
 };

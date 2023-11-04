@@ -8,8 +8,8 @@ const Favorites = () => {
   const favoriteFilms = useTypedSelector((state) => state.films.favorite);
   return (
     <StyledWrapper>
-      {(favoriteFilms as []).length ? (
-        (favoriteFilms as []).map((film) => <FilmCard filmData={film} />)
+      {(favoriteFilms as [])?.length ? (
+        (favoriteFilms as [])?.map((film) => <FilmCard filmData={film} />)
       ) : (
         <FavoritesEmptyState />
       )}

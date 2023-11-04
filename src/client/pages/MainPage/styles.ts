@@ -12,6 +12,10 @@ export const FilmsWrapper = styled("div")`
     gap: 32px;
     margin-bottom: 56px;
   }
+  @media (max-width: 528px) {
+    justify-content: center;
+    margin-bottom: 56px;
+  }
 
   @media (max-width: 320px) {
     margin-bottom: 48px;
@@ -23,5 +27,4 @@ export const StyledWrapper = styled("div")`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  transition: 0.3s;
 `;

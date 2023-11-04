@@ -1,25 +1,46 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
-export const StyledBar = styled("div")`
-  position: relative;
-  display: flex;
+export const StyledBar = styled("div")<{
+  $isDesktop: boolean;
+  $isOpened: boolean;
+}>`
+  position: ${(prop) => (prop.$isDesktop ? "sticky" : "absolute")};
+  right: 0;
+  top: 0;
+  background-color: ${(prop) => prop.theme.palette.primary.main};
+  display: ${(prop) => (prop.$isDesktop ? "flex" : "none")};
   justify-content: space-between;
   flex-direction: column;
-  min-width: 306px;
+  width: 306px;
+  height: ${(prop) =>
+    prop.$isDesktop ? "calc(100vh - 216px)" : "calc(100vh - 64px)"};
+  overflow: hidden;
+  flex-shrink: 0;
 
   @media (max-width: 1280px) {
-    display: none;
+    margin-top: 56px;
+    padding-left: ${(prop) => (prop.$isOpened ? "32px" : "0")};
+    display: ${(prop) => (prop.$isDesktop ? "none" : "flex")};
+    width: ${(prop) => (prop.$isOpened ? "248px" : "0")};
+  }
+  @media (max-width: 1024px) {
+    margin-top: 56px;
+    width: ${(prop) => (prop.$isOpened ? "248px" : "0")};
+  }
+  @media (max-width: 768px) {
+    padding-left: ${(prop) => (prop.$isOpened ? "24px" : "0")};
+    width: ${(prop) => (prop.$isOpened ? "248px" : "0")};
+  }
+  @media (max-width: 320px) {
+    width: ${(prop) => (prop.$isOpened ? "196px" : "0")};
   }
 `;
 
 export const StyledUl = styled("ul")`
-  position: sticky;
   display: flex;
   flex-direction: column;
   gap: 40px;
-  top: 152px;
-  margin-bottom: calc(100vh - 456px);
+
   &a {
     color: ${(prop) => prop.theme.palette.primary.purple};
     fill: ${(prop) => prop.theme.palette.primary.purple};
@@ -67,9 +88,10 @@ export const StyledLi = styled("li")`
   }
 `;
 
-export const StyledRigths = styled("p")`
-  position: sticky;
-  bottom: 64px;
+export const StyledRigths = styled("p")<{ $isDesktop: boolean }>`
+  display: ${(prop) => (prop.$isDesktop ? "inline" : "none")};
+  /* position: sticky;
+  bottom: 0px; */
   color: ${(prop) => prop.theme.palette.primary.contextual};
   font-family: "Exo 2";
   font-size: 16px;

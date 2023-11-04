@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const CardWrapper = styled("div")`
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 266px;
 
   @media (max-width: 1280px) {
     width: 208px;
   }
-  @media (max-width: 320px) {
+  @media (max-width: 528px) {
     width: 272px;
   }
 `;
@@ -30,7 +30,7 @@ export const StyledImgWrapper = styled("div")`
   @media (max-width: 1280px) {
     height: 279px;
   }
-  @media (max-width: 320px) {
+  @media (max-width: 528px) {
     height: 365px;
     margin-bottom: 20px;
   }

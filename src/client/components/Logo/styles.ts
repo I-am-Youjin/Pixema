@@ -1,11 +1,23 @@
 import styled from "styled-components";
 
-export const StyledLogoWrapper = styled("div")`
+export const StyledLogoWrapper = styled("div")<{ $navBarIsOpen: boolean }>`
   padding: 8px 0;
   display: flex;
   margin-right: 148px;
+  width: 158px;
   @media (max-width: 1280px) {
+    /* margin-right: ${(prop) => (prop.$navBarIsOpen ? "0" : "78px")}; */
     margin-right: 78px;
+  }
+
+  @media (max-width: 780px) {
+    margin-right: ${(prop) => (prop.$navBarIsOpen ? "0" : "78px")};
+    width: ${(prop) => (prop.$navBarIsOpen ? "0" : "158px")};
+  }
+
+  @media (max-width: 580px) {
+    margin-right: 0;
+    width: ${(prop) => (prop.$navBarIsOpen ? "0" : "158px")};
   }
 `;
 

@@ -1,10 +1,37 @@
-import React from "react";
-import { BtnWrapper, StyledBtn } from "./styles";
+import React, { createRef, useRef, useState } from "react";
+import { BtnWrapper, StyledBtn, StyledInput } from "./styles";
+import { useClipboard } from "use-clipboard-copy";
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
+import { useTypedSelector } from "../../../store/hooks/useTypedSelector";
+import { useParams } from "react-router-dom";
+import { useActions } from "../../../store/hooks/useActions";
 
 const SetFavoriteShareBtn = () => {
+  const clipboard = useClipboard();
+  const [copied, setCopied] = useState(false);
+
+  const copyToClipboard = () => {
+    clipboard.copy();
+    setCopied(!copied);
+    setTimeout(() => setCopied(false), 1000);
+  };
+
+  const films = useTypedSelector((state) => state.films.allFilms);
+  const { imdbID } = useParams();
+  let thisFilm = (films as [])?.find((film: any) => film.imdbID === imdbID);
+  console.log(thisFilm);
+
+  const { addToFavorite, delFromFavorite } = useActions();
+
+  const addToRemoveFromFavoriteFn = () => {
+    (thisFilm as any)?.isFavorite
+      ? delFromFavorite(thisFilm)
+      : addToFavorite(thisFilm);
+  };
   return (
     <BtnWrapper>
-      <StyledBtn>
+      <StyledBtn onClick={addToRemoveFromFavoriteFn}>
         <svg
           width="24"
           height="24"
@@ -18,7 +45,7 @@ const SetFavoriteShareBtn = () => {
           />
         </svg>
       </StyledBtn>
-      <StyledBtn>
+      <StyledBtn onClick={copyToClipboard}>
         <svg
           width="24"
           height="24"
@@ -55,6 +82,20 @@ const SetFavoriteShareBtn = () => {
           />
         </svg>
       </StyledBtn>
+      <StyledInput value={window.location.href} ref={clipboard.target} />
+      <Stack
+        sx={{
+          width: "96%",
+          position: "absolute",
+          left: "2%",
+          bottom: "1%",
+          opacity: copied ? "0.6" : "0",
+          zIndex: "10",
+        }}
+        spacing={2}
+      >
+        <Alert severity="success"> URL copied to clipboard</Alert>
+      </Stack>
     </BtnWrapper>
   );
 };

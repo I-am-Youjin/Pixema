@@ -10,15 +10,6 @@ import BtnShowMore from "../../components/BtnShowMore/BtnShowMore";
 const MainPage = () => {
   const films = useTypedSelector((state) => state.films.allFilms);
   const rating = useTypedSelector((state) => state.films.filmsRating);
-  const { getFilmsAsync, getFilmsRatingAsync } = useActions();
-  useEffect(() => {
-    if (!films) {
-      getFilmsRatingAsync();
-      if (rating) {
-        getFilmsAsync();
-      }
-    }
-  }, []);
 
   return (
     <StyledWrapper>

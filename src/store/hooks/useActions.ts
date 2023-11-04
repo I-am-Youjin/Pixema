@@ -1,7 +1,11 @@
 import { useDispatch } from "react-redux";
 import { themeActions } from "../Actions/themeActions";
 import { bindActionCreators } from "redux";
-import { getFilmsAsync, getFilmsRatingAsync } from "../Actions/getFilmsAsync";
+import {
+  getFilmsAsync,
+  getFilmsRatingAsync,
+  showMoreAsync,
+} from "../Actions/getFilmsAsync";
 import { filmsActions } from "../Actions/filmsActions";
 import { isFetchingActions } from "../Actions/isFetchingAction";
 import { getFilmByIdAsync } from "../Actions/getFilmsAsync";
@@ -16,6 +20,7 @@ export const useActions = () => {
       ...filmsActions,
       ...isFetchingActions,
       getFilmByIdAsync,
+      showMoreAsync,
       // ...postsActions,
       // getPostsAsync,
       // signUpUser,

@@ -33,3 +33,7 @@ export const StyledBtn = styled("button")`
     }
   }
 `;
+
+export const StyledInput = styled("input")`
+  display: none;
+`;

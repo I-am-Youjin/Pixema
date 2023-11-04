@@ -1,15 +1,13 @@
-import React from "react";
-import SearchBar from "../../client/components/SearchBar/SearchBar";
-import Logo from "../../client/components/Logo/Logo";
+import React, { ReactNode } from "react";
 import { StyledHeader } from "./styles";
 
-const Header = () => {
-  return (
-    <StyledHeader>
-      <Logo />
-      <SearchBar></SearchBar>
-    </StyledHeader>
-  );
+interface IHeader {
+  navIsOpened: boolean;
+  children: ReactNode;
+}
+
+const Header: React.FC<IHeader> = ({ children, navIsOpened }) => {
+  return <StyledHeader $navIsOpened={navIsOpened}>{children}</StyledHeader>;
 };
 
 export default Header;

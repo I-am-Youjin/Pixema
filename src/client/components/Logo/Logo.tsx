@@ -1,9 +1,13 @@
 import React from "react";
 import { StyledLogoWrapper, StyledPath, StyledSvg } from "./styles";
 
-const Logo: React.FC = () => {
+interface ILogo {
+  navBarIsOpen: boolean;
+}
+
+const Logo: React.FC<ILogo> = ({ navBarIsOpen }) => {
   return (
-    <StyledLogoWrapper>
+    <StyledLogoWrapper $navBarIsOpen={navBarIsOpen}>
       <StyledSvg
         width="412"
         height="104"

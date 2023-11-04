@@ -10,12 +10,16 @@ const BtnShowMore = () => {
   const filmsFetchResult = +useTypedSelector((state) => state.films.results);
   const pageLimit = Math.round(filmsFetchResult / 10);
   const films = useTypedSelector((state) => state.films.allFilms);
+  const searchParams = useTypedSelector((state) => state.films.searchValue);
   const onPageFilmsCount = films ? films.length + 10 : 20;
   const isFetchingSelector = useTypedSelector((prop) => prop.isFetching);
-  const { isFetching, getFilmsAsync, getFilmsRatingAsync } = useActions();
+  const { isFetching, showMoreAsync, getFilmsRatingAsync } = useActions();
   const handleFetch = () => {
     isFetching(true);
-    getFilmsAsync({ page: Math.round(onPageFilmsCount / 10) });
+    showMoreAsync({
+      s: searchParams?.s,
+      page: Math.round(onPageFilmsCount / 10),
+    });
   };
   if (pageLimit >= Math.round(onPageFilmsCount / 10)) {
     return (

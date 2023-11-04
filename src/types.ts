@@ -17,7 +17,12 @@ export type FilmDataBySearch = {
 };
 
 export type defaultStateType = Record<
-  "allFilms" | "favorite" | "filmsRating" | "results" | "receivedFilm",
+  | "allFilms"
+  | "favorite"
+  | "filmsRating"
+  | "results"
+  | "receivedFilm"
+  | "searchValue",
   null | FilmBySearch[] | FilmRatingData[]
 >;
 

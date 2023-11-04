@@ -25,7 +25,23 @@ export const getFilmsRatingAsync = () => {
 export const getFilmsAsync = (params?: any) => {
   return async (dispatch: Dispatch) => {
     const { data } = await getFilms(params);
-    dispatch(filmsActions.setFilms(data));
+    const respStatus = JSON.parse(data.Response.toLowerCase());
+
+    if (respStatus) {
+      dispatch(filmsActions.setFilms(data));
+    }
+
+    if (params) {
+      dispatch(filmsActions.setSearchValue({ ...params, respStatus }));
+    } else {
+      dispatch(filmsActions.setSearchValue({ s: "man", respStatus }));
+    }
+  };
+};
+export const showMoreAsync = (params?: any) => {
+  return async (dispatch: Dispatch) => {
+    const { data } = await getFilms(params);
+    dispatch(filmsActions.showMore(data));
     dispatch(isFetchingActions.isFetching(false));
   };
 };
