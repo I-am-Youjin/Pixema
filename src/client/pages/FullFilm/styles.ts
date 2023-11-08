@@ -92,6 +92,7 @@ export const RateMarksWrapper = styled("div")`
 `;
 
 export const ImgWrapper = styled("div")`
+  position: relative;
   display: flex;
   width: 100%;
   height: 356px;

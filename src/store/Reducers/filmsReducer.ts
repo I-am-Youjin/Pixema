@@ -18,24 +18,6 @@ export const filmsReducer = (
   switch (action.type) {
     case actionTypes.SET_FILMS:
       if (Array.isArray(action.payload.Search)) {
-        // if (Array.isArray(state.allFilms)) {
-        //   return {
-        //     ...state,
-        //     results: action.payload.totalResults,
-        //     allFilms: (state.allFilms as FilmBySearch[]).concat([
-        //       ...(action.payload.Search.map(
-        //         (film: FilmBySearch, id: number) => ({
-        //           ...film,
-        //           id: id,
-        //           isFavorite: false,
-        //           rating: (state.filmsRating as FilmRatingData[]).find(
-        //             (f, idx) => id === idx
-        //           )?.rating,
-        //         })
-        //       ) as FilmBySearch[]),
-        //     ]),
-        //   };
-        // } else {
         return {
           ...state,
           results: action.payload.totalResults,
@@ -43,13 +25,16 @@ export const filmsReducer = (
             ...(action.payload.Search.map((film: FilmBySearch, id: number) => ({
               ...film,
               id: id,
-              isFavorite: false,
+              isFavorite: (state.favorite as FilmBySearch[])?.find(
+                (favFilm) => favFilm.imdbID === film.imdbID
+              )
+                ? true
+                : false,
               rating: (state.filmsRating as FilmRatingData[]).find(
                 (f, idx) => id === idx
               )?.rating,
             })) as FilmBySearch[]),
           ],
-          // };
         };
       }
       return state;

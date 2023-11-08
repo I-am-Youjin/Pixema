@@ -20,7 +20,6 @@ const SetFavoriteShareBtn = () => {
   const films = useTypedSelector((state) => state.films.allFilms);
   const { imdbID } = useParams();
   let thisFilm = (films as [])?.find((film: any) => film.imdbID === imdbID);
-  console.log(thisFilm);
 
   const { addToFavorite, delFromFavorite } = useActions();
 

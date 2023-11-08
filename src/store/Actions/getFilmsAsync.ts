@@ -34,7 +34,7 @@ export const getFilmsAsync = (params?: any) => {
     if (params) {
       dispatch(filmsActions.setSearchValue({ ...params, respStatus }));
     } else {
-      dispatch(filmsActions.setSearchValue({ s: "man", respStatus }));
+      dispatch(filmsActions.setSearchValue({ s: "man", page: 1, respStatus }));
     }
   };
 };

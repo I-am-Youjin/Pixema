@@ -12,7 +12,7 @@ interface ISerachBar {
 }
 
 const SearchBar: React.FC<ISerachBar> = ({ isMobile, navIsOpened }) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState<string>();
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const { getFilmsAsync, getFilmsRatingAsync, setFilmsRating } = useActions();

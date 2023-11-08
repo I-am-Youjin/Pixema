@@ -5,11 +5,16 @@ export type FilmBySearch = {
   Type: string;
   Poster: string;
   rating: string;
+  isFavorite: boolean;
+};
+
+export type SearchValue = {
+  respStatus: boolean;
 };
 
 export type FilmRatingData = {
   rating: string;
-  id: string;
+  id?: string;
 };
 
 export type FilmDataBySearch = {

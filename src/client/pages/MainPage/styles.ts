@@ -28,3 +28,12 @@ export const StyledWrapper = styled("div")`
   align-items: center;
   justify-content: space-between;
 `;
+
+export const StyledText = styled("p")`
+  font-family: "Exo 2";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 60px;
+  color: ${(prop) => prop.theme.palette.primary.contrastText};
+`;

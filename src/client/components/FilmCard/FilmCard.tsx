@@ -22,8 +22,8 @@ const FilmCard: React.FC<FilmDataBySearch> = ({ filmData }) => {
     <CardWrapper>
       <StyledImgWrapper>
         <RateMarker isAbsolute={true}>{filmData.rating}</RateMarker>
-        <StyledImg src={filmData.Poster} />
-        <FavoriteMarker />
+        <StyledImg src={filmData.Poster} />\
+        {filmData.isFavorite ? <FavoriteMarker /> : null}
       </StyledImgWrapper>
       <StyledTitle data-title={filmData.Title} onClick={handleOpenFullFilm}>
         {filmData.Title}
