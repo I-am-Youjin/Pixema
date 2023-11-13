@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export const StyledInputWrapper = styled("div")<{ $isMobile: boolean }>`
+  display: ${(prop) => (prop.$isMobile ? "none" : "flex")};
+  width: 100%;
+  position: relative;
+
+  @media (max-width: 580px) {
+    display: ${(prop) => (prop.$isMobile ? "flex" : "none")};
+  }
+`;
+
 export const StyledInput = styled("input")<{
   $searchStatus: boolean;
   $isMobile: boolean;
@@ -10,7 +20,6 @@ export const StyledInput = styled("input")<{
   width: 100%;
   padding: 20px 16px;
   border-radius: 10px;
-  border: 2px solid ${(prop) => prop.theme.palette.secondary.graphite};
   border: 2px solid
     ${(prop) =>
       prop.$searchStatus
@@ -31,6 +40,7 @@ export const StyledInput = styled("input")<{
           ? prop.theme.palette.primary.purple
           : prop.theme.palette.secondary.error};
   }
+
   @media (max-width: 580px) {
     display: ${(prop) => (prop.$isMobile ? "flex" : "none")};
     width: ${(prop) => (prop.$navIsOpened ? "0" : "100%")};

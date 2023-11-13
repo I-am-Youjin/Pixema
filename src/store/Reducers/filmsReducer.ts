@@ -1,14 +1,23 @@
 import { baseActionTypeWithPayload } from "../Actions/types";
 import { actionTypes } from "../Actions/filmsActions";
-import { FilmBySearch, defaultStateType, FilmRatingData } from "../../types";
+import {
+  FilmBySearch,
+  defaultStateTypeFilms,
+  FilmRatingData,
+} from "../../types/types";
 
-const defaultState: defaultStateType = {
+const defaultState: defaultStateTypeFilms = {
   allFilms: null,
   favorite: [],
   filmsRating: [],
   results: null,
   receivedFilm: null,
-  searchValue: null,
+  searchValue: {
+    s: "man",
+    type: "",
+    y: "",
+    respStatus: true,
+  },
 };
 
 export const filmsReducer = (

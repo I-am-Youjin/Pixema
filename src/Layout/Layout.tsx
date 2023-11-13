@@ -12,32 +12,48 @@ import DesktopNavBar from "../client/components/DesktopNavBar/DesktopNavBar";
 import SearchBar from "./../client/components/SearchBar/SearchBar";
 import Logo from "./../client/components/Logo/Logo";
 import NavBarBtn from "./../client/components/NavBarBtn/NavBarBtn";
+import { FilterBarPortal } from "../client/components/FilterBar/FilterBarPortal";
+import UserTab from "../client/components/UserTab/UserTab";
 
 const Layout = () => {
-  const [close, setClose] = useState(false);
+  const [closeNav, setCloseNav] = useState(false);
+  const [closeFilter, setCloseFilter] = useState(false);
   const handleBtnClick = () => {
-    setClose(!close);
+    setCloseNav(!closeNav);
+  };
+  const handleToogleFilter = () => {
+    setCloseFilter(!closeFilter);
   };
 
   return (
     <StyledLayout>
       <PermanentVisibleContent>
-        <Header navIsOpened={close}>
+        <Header navIsOpened={closeNav}>
           <DesktopHeaderContent>
-            <Logo navBarIsOpen={close} />
-            <SearchBar navIsOpened={false} isMobile={false}></SearchBar>
-            <NavBarBtn isOpened={close} onClick={handleBtnClick} />
+            <Logo navBarIsOpen={closeNav} />
+            <SearchBar
+              navIsOpened={false}
+              isMobile={false}
+              onClick={handleToogleFilter}
+            ></SearchBar>
+            <UserTab />
+            <NavBarBtn isOpened={closeNav} onClick={handleBtnClick} />
           </DesktopHeaderContent>
-          <SearchBar navIsOpened={close} isMobile={true}></SearchBar>
+          <SearchBar
+            navIsOpened={closeNav}
+            isMobile={true}
+            onClick={handleToogleFilter}
+          ></SearchBar>
         </Header>
-        <Main navBarIsOpen={close}>
+        <Main navBarIsOpen={closeNav}>
           <DesktopNavBar isOpened={true} isDesktop={true} />
           <ContentWrapper>
             <Outlet />
           </ContentWrapper>
-          <DesktopNavBar isOpened={close} isDesktop={false} />
+          <DesktopNavBar isOpened={closeNav} isDesktop={false} />
         </Main>
       </PermanentVisibleContent>
+      <FilterBarPortal isOpened={closeFilter} onClick={handleToogleFilter} />
     </StyledLayout>
   );
 };

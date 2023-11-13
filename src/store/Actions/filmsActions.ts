@@ -29,7 +29,7 @@ interface IPostsActions {
   ) => baseActionTypeWithPayload<actionTypes.DEL_FROM_FAVORITE, any>;
   setFilmsRating: (
     films: any[]
-  ) => baseActionTypeWithPayload<actionTypes.SET_FILMS_RATING, any>;
+  ) => baseActionTypeWithPayload<actionTypes.SET_FILMS_RATING, any[]>;
 }
 
 export const filmsActions: IPostsActions = {

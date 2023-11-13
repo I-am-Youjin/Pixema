@@ -5,6 +5,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { filmsReducer } from "./Reducers/filmsReducer";
 import { isFetchingReducer } from "./Reducers/isFetchingReducer";
+import { filterReducer } from "./Reducers/filterReducer";
 // import { signUpReducer } from "./Reducer/signUpReduser";
 // import { seletedPostReducer } from "./Reducer/selectedPostReducer";
 // import { loginReducer } from "./Reducer/loginReducer";
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   theme: themeReducer,
   films: filmsReducer,
   isFetching: isFetchingReducer,
+  filter: filterReducer,
   // signUp: signUpReducer,
   // selectedPost: seletedPostReducer,
   // session: loginReducer,

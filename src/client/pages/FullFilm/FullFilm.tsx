@@ -19,22 +19,17 @@ import {
 import SetFavoriteShareBtn from "../../components/SetFavotiteShareBtn/SetFavoriteShareBtn";
 import RateMarker from "../../components/FilmCard/RateMarker/RateMarker";
 import Recomendations from "../../components/Recomendations/Recomendations";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useActions } from "../../../store/hooks/useActions";
 import FavoriteMarker from "../../components/FilmCard/FavoriteMarker/FavoriteMarker";
-import { FilmBySearch } from "../../../types";
+import { FilmBySearch } from "../../../types/types";
 const FullFilm = () => {
   const film = useTypedSelector((state: any) => state.films.receivedFilm);
   const films = useTypedSelector((state: any) => state.films.allFilms);
-  const navigate = useNavigate();
   const { imdbID } = useParams();
   const { getFilmByIdAsync } = useActions();
   let thisFilm = (films as [])?.find((film: any) => film.imdbID === imdbID);
   let isFavorite = thisFilm ? (thisFilm as FilmBySearch).isFavorite : null;
-
-  if (!film) {
-    navigate("/");
-  }
 
   useEffect(() => {
     getFilmByIdAsync({ i: imdbID });

@@ -22,6 +22,7 @@ const palettes = {
       dark: "#242426",
       graphite: "#323537",
       white: "#FFFFFF",
+      opacity: "rgba(0, 0, 0, 0.50)",
     },
   },
   [ThemeModes.LIGHT]: {
@@ -41,6 +42,7 @@ const palettes = {
       dark: "#242426",
       graphite: "#323537",
       white: "#FFFFFF",
+      opacity: "rgba(0, 0, 0, 0.50)",
     },
   },
 };

@@ -9,6 +9,7 @@ import {
 import { filmsActions } from "../Actions/filmsActions";
 import { isFetchingActions } from "../Actions/isFetchingAction";
 import { getFilmByIdAsync } from "../Actions/getFilmsAsync";
+import { filterActions } from "../Actions/filterActions";
 
 export const useActions = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ export const useActions = () => {
       ...isFetchingActions,
       getFilmByIdAsync,
       showMoreAsync,
+      ...filterActions,
       // ...postsActions,
       // getPostsAsync,
       // signUpUser,

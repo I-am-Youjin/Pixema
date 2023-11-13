@@ -8,7 +8,7 @@ import {
 } from "./styles";
 import RateMarker from "./RateMarker/RateMarker";
 import FavoriteMarker from "./FavoriteMarker/FavoriteMarker";
-import { FilmDataBySearch } from "../../../types";
+import { FilmDataBySearch } from "../../../types/types";
 import { useActions } from "../../../store/hooks/useActions";
 import { useTypedSelector } from "../../../store/hooks/useTypedSelector";
 

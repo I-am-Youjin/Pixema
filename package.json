@@ -61,6 +61,7 @@
   },
   "devDependencies": {
     "@types/react-slick": "^0.23.11",
-    "@types/slick-carousel": "^1.6.39"
+    "@types/slick-carousel": "^1.6.39",
+    "file-loader": "^6.2.0"
   }
 }

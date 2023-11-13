@@ -66,7 +66,7 @@ export const Title = styled("p")`
   line-height: 60px;
   color: ${(prop) => prop.theme.palette.primary.contrastText};
   margin-bottom: 24px;
-  white-space: nowrap;
+  white-space: wrap;
 
   @media (max-width: 768px) {
     font-size: 32px;

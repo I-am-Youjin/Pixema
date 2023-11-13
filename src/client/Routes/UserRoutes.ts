@@ -1,9 +1,10 @@
-import { UserRoutes } from "../../types";
+import { UserRoutes } from "../../types/types";
 import Favorites from "../pages/Favorites/Favorites";
 import SettingsPage from "../pages/SettingsPage/SettingsPage";
 import Trends from "../pages/Trends/Trends";
 // import { useTypedSelector } from "../../store/hooks/useTypedSelector";
 import FullFilm from "../pages/FullFilm/FullFilm";
+import SignInPage from "../pages/SignInPage/SignInPage";
 
 export const userRoutes: UserRoutes[] = [
   {
@@ -30,6 +31,12 @@ export const userRoutes: UserRoutes[] = [
     path: `/film/:imdbID`,
     Component: FullFilm,
     title: "FullFilm",
+  },
+  {
+    id: 6,
+    path: `/SignIn`,
+    Component: SignInPage,
+    title: "SignInPage",
   },
   //   {
   //     id: 5,
