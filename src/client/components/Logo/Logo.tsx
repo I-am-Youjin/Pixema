@@ -1,13 +1,18 @@
 import React from "react";
 import { StyledLogoWrapper, StyledPath, StyledSvg } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 interface ILogo {
   navBarIsOpen: boolean;
 }
 
 const Logo: React.FC<ILogo> = ({ navBarIsOpen }) => {
+  const navigate = useNavigate();
   return (
-    <StyledLogoWrapper $navBarIsOpen={navBarIsOpen}>
+    <StyledLogoWrapper
+      $navBarIsOpen={navBarIsOpen}
+      onClick={() => navigate("/")}
+    >
       <StyledSvg
         width="412"
         height="104"

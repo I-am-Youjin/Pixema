@@ -10,7 +10,7 @@ export const Title = styled("p")`
   font-style: normal;
   font-weight: 600;
   line-height: 36px;
-  color: ${(prop: any) => prop.theme.palette.primary.contrastText};
+  color: ${(prop) => prop.theme.palette.primary.contrastText};
   @media (max-width: 680px) {
     font-size: 20px;
   }
@@ -50,12 +50,12 @@ export const StyledCarouselButton = styled("button")`
   cursor: pointer;
 
   & path {
-    fill: ${(prop) => prop.theme.palette.secondary.white};
+    fill: ${(prop) => prop.theme.palette.primary.contrastText};
   }
   &:disabled {
     cursor: default;
     & path {
-      fill: ${(prop) => prop.theme.palette.secondary.graphite};
+      fill: ${(prop) => prop.theme.palette.secondary.light};
     }
   }
 `;

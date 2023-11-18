@@ -7,11 +7,8 @@ import {
   StyledRigths,
 } from "./styles";
 import { NavLink } from "react-router-dom";
-
-interface INavBar {
-  isOpened: boolean;
-  isDesktop: boolean;
-}
+import UserTab from "../UserTab/UserTab";
+import { INavBar } from "../../../types/types";
 
 const DesktopNavBar: React.FC<INavBar> = ({ isOpened, isDesktop }) => {
   return (
@@ -83,6 +80,7 @@ const DesktopNavBar: React.FC<INavBar> = ({ isOpened, isDesktop }) => {
           </NavLink>
         </StyledLi>
       </StyledUl>
+      <UserTab isDesktop={false}></UserTab>
       <StyledRigths $isDesktop={isDesktop}>© All Rights Reserved</StyledRigths>
     </StyledBar>
   );

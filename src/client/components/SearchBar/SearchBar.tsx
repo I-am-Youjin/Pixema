@@ -31,11 +31,6 @@ const SearchBar: React.FC<ISearchBar> = ({
     navigate("/");
   };
 
-  // const clearInput = () => {
-  //   (inputRef.current! as any).value = "";
-  //   setValue("");
-  // };
-
   const debounceOnChange = useCallback(debounce(handleChange, 500), []);
 
   useEffect(() => {
@@ -60,7 +55,7 @@ const SearchBar: React.FC<ISearchBar> = ({
         onClick={handleClick}
         $searchStatus={searchStatus}
       />
-      <FilterIcon onClick={onClick}></FilterIcon>
+      {navIsOpened ? null : <FilterIcon onClick={onClick}></FilterIcon>}
     </StyledInputWrapper>
   );
 };

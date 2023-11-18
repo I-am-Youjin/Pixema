@@ -116,6 +116,17 @@ export const filmsReducer = (
           (film: FilmBySearch) => film.imdbID !== action.payload.imdbID
         ),
       };
+    case actionTypes.CLEAR_FAVORITE:
+      return {
+        ...state,
+        allFilms: (state.allFilms as any)?.map((film: FilmBySearch) => {
+          return {
+            ...film,
+            isFavorite: false,
+          };
+        }),
+        favorite: [],
+      };
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-import { baseActionTypeWithPayload } from "./types";
+import { baseActionTypeWithPayload, baseActionType } from "./types";
 
 export enum actionTypes {
   SET_FILMS = "SET_FILMS",
@@ -8,9 +8,10 @@ export enum actionTypes {
   SET_FILMS_RATING = "SET_FILMS_RATING",
   ADD_TO_FAVORITE = "ADD_TO_FAVORITE",
   DEL_FROM_FAVORITE = "DEL_FROM_FAVORITE",
+  CLEAR_FAVORITE = "CLEAR_FAVORITE",
 }
 
-interface IPostsActions {
+interface IFilmActions {
   setFilms: (
     films: any[]
   ) => baseActionTypeWithPayload<actionTypes.SET_FILMS, any[]>;
@@ -27,12 +28,13 @@ interface IPostsActions {
   delFromFavorite: (
     film: any
   ) => baseActionTypeWithPayload<actionTypes.DEL_FROM_FAVORITE, any>;
+  clearFavorite: () => baseActionType<actionTypes.CLEAR_FAVORITE>;
   setFilmsRating: (
     films: any[]
   ) => baseActionTypeWithPayload<actionTypes.SET_FILMS_RATING, any[]>;
 }
 
-export const filmsActions: IPostsActions = {
+export const filmsActions: IFilmActions = {
   setFilms: (films) => ({ type: actionTypes.SET_FILMS, payload: films }),
   showMore: (films) => ({ type: actionTypes.SHOW_MORE, payload: films }),
   setSearchValue: (value) => ({
@@ -47,6 +49,9 @@ export const filmsActions: IPostsActions = {
   delFromFavorite: (film) => ({
     type: actionTypes.DEL_FROM_FAVORITE,
     payload: film,
+  }),
+  clearFavorite: () => ({
+    type: actionTypes.CLEAR_FAVORITE,
   }),
   setFilmsRating: (films) => ({
     type: actionTypes.SET_FILMS_RATING,

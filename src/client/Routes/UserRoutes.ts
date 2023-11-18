@@ -2,9 +2,10 @@ import { UserRoutes } from "../../types/types";
 import Favorites from "../pages/Favorites/Favorites";
 import SettingsPage from "../pages/SettingsPage/SettingsPage";
 import Trends from "../pages/Trends/Trends";
-// import { useTypedSelector } from "../../store/hooks/useTypedSelector";
 import FullFilm from "../pages/FullFilm/FullFilm";
 import SignInPage from "../pages/SignInPage/SignInPage";
+import SignUpPage from "../pages/SignUpPage/SignUpPage";
+import ResetPasswordPage from "../pages/ResetPasswordPage/ResetPasswordPage";
 
 export const userRoutes: UserRoutes[] = [
   {
@@ -12,7 +13,6 @@ export const userRoutes: UserRoutes[] = [
     path: `/trends`,
     Component: Trends,
     title: "Trends",
-    // strict: true,
   },
   {
     id: 3,
@@ -38,31 +38,18 @@ export const userRoutes: UserRoutes[] = [
     Component: SignInPage,
     title: "SignInPage",
   },
-  //   {
-  //     id: 5,
-  //     path: "/sign-up",
-  //     Component: SignUpPage,
-  //     title: "SignUp",
-  //   },
-  //   {
-  //     id: 6,
-  //     path: "/search",
-  //     Component: SearchPage,
-  //     title: "SearchPage",
-  //   },
-  //   {
-  //     id: 7,
-  //     path: `/post/add-post`,
-  //     Component: AddPostPage,
-  //     title: "Add post",
-  //     strict: true,
-  //   },
-  //   {
-  //     id: 99,
-  //     path: "//activate/:uid/:token",
-  //     Component: SuccessSignUpPage,
-  //     title: "Activation",
-  //   },
+  {
+    id: 7,
+    path: `/SignUp`,
+    Component: SignUpPage,
+    title: "SignUpPage",
+  },
+  {
+    id: 8,
+    path: `/ResetPassword`,
+    Component: ResetPasswordPage,
+    title: "ResetPasswordPage",
+  },
   //   {
   //     id: 228,
   //     path: "*",

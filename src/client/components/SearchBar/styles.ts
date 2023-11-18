@@ -45,6 +45,11 @@ export const StyledInput = styled("input")<{
     display: ${(prop) => (prop.$isMobile ? "flex" : "none")};
     width: ${(prop) => (prop.$navIsOpened ? "0" : "100%")};
     padding: ${(prop) => (prop.$navIsOpened ? "0" : "20px 16px")};
-    border: ${(prop) => (prop.$navIsOpened ? "none" : "2px")};
+    border: ${(prop) =>
+      prop.$navIsOpened
+        ? "none"
+        : `2px solid prop.$searchStatus
+          ? prop.theme.palette.secondary.graphite
+          : prop.theme.palette.secondary.error}`};
   }
 `;

@@ -1,32 +1,49 @@
-import React, { createRef, useRef, useState } from "react";
+import React, { useState } from "react";
 import { BtnWrapper, StyledBtn, StyledInput } from "./styles";
 import { useClipboard } from "use-clipboard-copy";
-import Alert from "@mui/material/Alert";
-import Stack from "@mui/material/Stack";
 import { useTypedSelector } from "../../../store/hooks/useTypedSelector";
 import { useParams } from "react-router-dom";
 import { useActions } from "../../../store/hooks/useActions";
+import { useSnackbar } from "notistack";
 
 const SetFavoriteShareBtn = () => {
   const clipboard = useClipboard();
-  const [copied, setCopied] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const copyToClipboard = () => {
     clipboard.copy();
-    setCopied(!copied);
-    setTimeout(() => setCopied(false), 1000);
+    enqueueSnackbar("URL copied to clipboard", { variant: "success" });
   };
 
   const films = useTypedSelector((state) => state.films.allFilms);
+  const user = useTypedSelector((state) => state.user.email);
   const { imdbID } = useParams();
   let thisFilm = (films as [])?.find((film: any) => film.imdbID === imdbID);
 
   const { addToFavorite, delFromFavorite } = useActions();
 
+  const addToFavotriteFn = () => {
+    addToFavorite(thisFilm);
+    enqueueSnackbar("Added to favorites", {
+      variant: "success",
+    });
+  };
+
+  const removeFromFavotriteFn = () => {
+    delFromFavorite(thisFilm);
+    enqueueSnackbar("Removed from favorites", {
+      variant: "success",
+    });
+  };
+
   const addToRemoveFromFavoriteFn = () => {
-    (thisFilm as any)?.isFavorite
-      ? delFromFavorite(thisFilm)
-      : addToFavorite(thisFilm);
+    user
+      ? (thisFilm as any)?.isFavorite
+        ? removeFromFavotriteFn()
+        : addToFavotriteFn()
+      : enqueueSnackbar("Register or log in to your account", {
+          variant: "error",
+        });
   };
   return (
     <BtnWrapper>
@@ -82,19 +99,6 @@ const SetFavoriteShareBtn = () => {
         </svg>
       </StyledBtn>
       <StyledInput value={window.location.href} ref={clipboard.target} />
-      <Stack
-        sx={{
-          width: "96%",
-          position: "absolute",
-          left: "2%",
-          bottom: "1%",
-          opacity: copied ? "0.6" : "0",
-          zIndex: "10",
-        }}
-        spacing={2}
-      >
-        <Alert severity="success"> URL copied to clipboard</Alert>
-      </Stack>
     </BtnWrapper>
   );
 };

@@ -5,6 +5,7 @@ export const StyledLogoWrapper = styled("div")<{ $navBarIsOpen: boolean }>`
   display: flex;
   margin-right: 148px;
   width: 158px;
+  cursor: pointer;
   @media (max-width: 1280px) {
     /* margin-right: ${(prop) => (prop.$navBarIsOpen ? "0" : "78px")}; */
     margin-right: 78px;

@@ -5,20 +5,12 @@ import { createTheme } from "./styles/themes";
 import MainPage from "./client/pages/MainPage/MainPage";
 import { Routes, Route } from "react-router-dom";
 import { userRoutes } from "./client/Routes/UserRoutes";
-// import PrivateRoute from "./client/Routes/PrivateRoute/PrivateRoute";
 import Layout from "../src/Layout/Layout";
 import { useTypedSelector } from "./store/hooks/useTypedSelector";
-// import { useActions } from "./store/hooks/useActions";
 
 function App() {
   const userTheme = useTypedSelector((state: any) => state.theme.themeMode);
   const currentTheme = createTheme(userTheme);
-  // const isLoggedIn = useTypedSelector((state) => state.session.isLoggedIn);
-  // const { authorizeUser } = useActions();
-
-  // if (!isLoggedIn) {
-  //   authorizeUser();
-  // }
 
   return (
     <ThemeProvider theme={currentTheme}>
@@ -32,15 +24,7 @@ function App() {
                   <Route
                     key={id}
                     path={path}
-                    element={
-                      // !strict ? (
-                      <Component {...componentAdditionalProps} />
-                      // ) : (
-                      //   <PrivateRoute>
-                      //     <Component {...componentAdditionalProps} />
-                      //   </PrivateRoute>
-                      // )
-                    }
+                    element={<Component {...componentAdditionalProps} />}
                   />
                 );
               }

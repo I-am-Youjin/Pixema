@@ -39,6 +39,10 @@ export type defaultStateTypeFilter = Record<
   "sortBy" | "year" | "type",
   null | string
 >;
+export type defaultStateTypeUser = Record<
+  "email" | "token" | "id" | "name",
+  null | string
+>;
 
 export type UserRoutes = {
   id: string | number;
@@ -84,4 +88,42 @@ export interface ITab {
   title: string;
   onClick: () => void;
   visability: boolean;
+}
+
+export interface ICustomInput {
+  onChange: (event: any) => void;
+  lable: string;
+  type: string;
+  placeholder: string;
+  value: string;
+}
+
+export interface ICustomBtn {
+  onClick: () => void;
+  title: string;
+  isPurple?: boolean;
+}
+
+export interface IUserTab {
+  isDesktop: boolean;
+}
+
+export type UserData = {
+  username?: string;
+  email: string;
+  password?: string;
+};
+export type signUpData = {
+  username: string;
+  email: string;
+  id: string;
+};
+
+export interface INavBar {
+  isOpened: boolean;
+  isDesktop: boolean;
+}
+
+export interface ISwitch {
+  onClick: () => void;
 }

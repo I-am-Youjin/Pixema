@@ -10,6 +10,7 @@ import { filmsActions } from "../Actions/filmsActions";
 import { isFetchingActions } from "../Actions/isFetchingAction";
 import { getFilmByIdAsync } from "../Actions/getFilmsAsync";
 import { filterActions } from "../Actions/filterActions";
+import { userActions } from "../Actions/userActions";
 
 export const useActions = () => {
   const dispatch = useDispatch();
@@ -23,16 +24,7 @@ export const useActions = () => {
       getFilmByIdAsync,
       showMoreAsync,
       ...filterActions,
-      // ...postsActions,
-      // getPostsAsync,
-      // signUpUser,
-      // getPostByIdAsync,
-      // ...selectedPostActions,
-      // loginUser,
-      // authorizeUser,
-      // logOut: logInActions.logOut,
-      // getMyPosts,
-      // addPost,
+      ...userActions,
     },
     dispatch
   );

@@ -12,6 +12,7 @@ const palettes = {
       contextual: "#AFB2B6",
       contrastText: "#ffffff",
       inputBackground: "#323537",
+      authBackground: "#242426",
     },
     secondary: {
       error: "#FF5154",
@@ -32,6 +33,7 @@ const palettes = {
       contextual: "#AFB2B6",
       contrastText: "#000000",
       inputBackground: "#FFFFFF",
+      authBackground: "#FFFFFF",
     },
     secondary: {
       error: "#FF5154",

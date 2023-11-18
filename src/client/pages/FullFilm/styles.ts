@@ -137,7 +137,7 @@ export const PlotAndDiscritionText = styled("p")`
   font-weight: 500;
   line-height: 24px;
   white-space: break-spaces;
-  color: ${(prop) => prop.theme.palette.secondary.white};
+  color: ${(prop) => prop.theme.palette.primary.contrastText};
 `;
 
 export const DiscriptionConteiner = styled("div")`

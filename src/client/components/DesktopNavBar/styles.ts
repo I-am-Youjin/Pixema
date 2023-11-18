@@ -18,18 +18,20 @@ export const StyledBar = styled("div")<{
   flex-shrink: 0;
 
   @media (max-width: 1280px) {
+    position: absolute;
+    right: 0;
+    justify-content: flex-start;
     margin-top: 56px;
     padding-left: ${(prop) => (prop.$isOpened ? "32px" : "0")};
+    padding-right: ${(prop) => (prop.$isOpened ? "32px" : "0")};
     display: ${(prop) => (prop.$isDesktop ? "none" : "flex")};
     width: ${(prop) => (prop.$isOpened ? "248px" : "0")};
   }
   @media (max-width: 1024px) {
     margin-top: 56px;
-    width: ${(prop) => (prop.$isOpened ? "248px" : "0")};
   }
   @media (max-width: 768px) {
     padding-left: ${(prop) => (prop.$isOpened ? "24px" : "0")};
-    width: ${(prop) => (prop.$isOpened ? "248px" : "0")};
   }
   @media (max-width: 320px) {
     width: ${(prop) => (prop.$isOpened ? "196px" : "0")};
@@ -44,6 +46,10 @@ export const StyledUl = styled("ul")`
   &a {
     color: ${(prop) => prop.theme.palette.primary.purple};
     fill: ${(prop) => prop.theme.palette.primary.purple};
+  }
+
+  @media (max-width: 1280px) {
+    margin-bottom: 40px;
   }
 `;
 

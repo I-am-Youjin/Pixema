@@ -91,12 +91,6 @@ export const BtnWrapper = styled("div")`
   }
 `;
 
-export const AfterBtnTextWrapper = styled("div")`
-  display: flex;
-  gap: 0.25rem;
-  justify-content: center;
-`;
-
 export const Rights = styled("p")`
   color: ${(prop) => prop.theme.palette.secondary.white};
   font-family: "Exo 2";
@@ -104,32 +98,4 @@ export const Rights = styled("p")`
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
-`;
-
-export const ContextualText = styled("div")<{
-  $size?: string;
-  $isClickable?: boolean;
-  $isPurple?: boolean;
-}>`
-  font-family: "Exo 2";
-  font-size: ${(prop) => (prop.$size ? prop.$size : "14px")};
-  font-style: normal;
-  font-weight: 500;
-  line-height: 24px;
-  color: ${(prop) =>
-    prop.$isPurple
-      ? prop.theme.palette.primary.purple
-      : prop.theme.palette.secondary.light};
-  cursor: ${(prop) => (prop.$isClickable ? "pointer" : "default")};
-
-  &:hover {
-    color: ${(prop) =>
-      prop.$isClickable
-        ? prop.theme.palette.primary.purple
-        : prop.theme.palette.secondary.light};
-  }
-
-  @media (max-width: 622px) {
-    font-size: 14px;
-  }
 `;

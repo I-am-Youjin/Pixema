@@ -1,34 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyledWrapper,
   StyledUserIcon,
   UserInfoConteiner,
   UserName,
+  UserActionBtn,
+  UserActionsWrapper,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
+import { IUserTab } from "../../../types/types";
+import { useTypedSelector } from "../../../store/hooks/useTypedSelector";
+import { useActions } from "../../../store/hooks/useActions";
+import { getAuth, signOut } from "firebase/auth";
+import { useAuth } from "../../../store/hooks/useAuth";
 
-const UserTab = () => {
-  const user = null;
-  // {
-  //   name: "Vlad Zubko",
-  //   mail: "dfsdf@ewefwef.ru",
-  //   password: "34261445",
-  // };
-
-  // const initials = user.name
-  //   ?.split(" ")
-  //   .reduce(
-  //     (initials, nameOrSurname) => initials + nameOrSurname[0].toUpperCase(),
-  //     ""
-  //   );
-
+const UserTab: React.FC<IUserTab> = ({ isDesktop }) => {
+  const stateUser = useTypedSelector((state) => state.user);
+  const [openedUserActions, setOpenedUserActions] = useState(false);
+  const { removeUser, clearFavorite, setUser } = useActions();
   const navigate = useNavigate();
 
-  return user ? (
-    <StyledWrapper>
+  const handleOpenProfileActions = () => {
+    setOpenedUserActions(!openedUserActions);
+  };
+  const handleLogOut = async () => {
+    const auth = getAuth();
+    await signOut(auth);
+    removeUser();
+    clearFavorite();
+  };
+  const handleOpenSettings = () => {
+    navigate("/settings");
+  };
+
+  const initials = stateUser.name
+    ?.split(" ")
+    .reduce(
+      (initials: string, nameOrSurname: string) =>
+        initials + nameOrSurname[0].toUpperCase(),
+      ""
+    );
+
+  useAuth();
+
+  return stateUser.name ? (
+    <StyledWrapper $isDesktop={isDesktop} onClick={handleOpenProfileActions}>
       <UserInfoConteiner>
-        {/* <StyledUserIcon>{initials}</StyledUserIcon>
-        <UserName>{user.name}</UserName> */}
+        <StyledUserIcon>{initials}</StyledUserIcon>
+        <UserName>{stateUser.name}</UserName>
       </UserInfoConteiner>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -44,9 +63,13 @@ const UserTab = () => {
           fill="white"
         />
       </svg>
+      <UserActionsWrapper $isOpen={openedUserActions}>
+        <UserActionBtn onClick={handleOpenSettings}>Edit profile</UserActionBtn>
+        <UserActionBtn onClick={handleLogOut}>Log out</UserActionBtn>
+      </UserActionsWrapper>
     </StyledWrapper>
   ) : (
-    <StyledWrapper onClick={() => navigate("/SignIn")}>
+    <StyledWrapper $isDesktop={isDesktop} onClick={() => navigate("/SignIn")}>
       <UserInfoConteiner>
         <StyledUserIcon>
           <svg

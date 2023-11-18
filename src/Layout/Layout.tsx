@@ -14,6 +14,7 @@ import Logo from "./../client/components/Logo/Logo";
 import NavBarBtn from "./../client/components/NavBarBtn/NavBarBtn";
 import { FilterBarPortal } from "../client/components/FilterBar/FilterBarPortal";
 import UserTab from "../client/components/UserTab/UserTab";
+import { NavBarPortal } from "../client/components/DesktopNavBar/NavBarPortal";
 
 const Layout = () => {
   const [closeNav, setCloseNav] = useState(false);
@@ -36,7 +37,7 @@ const Layout = () => {
               isMobile={false}
               onClick={handleToogleFilter}
             ></SearchBar>
-            <UserTab />
+            <UserTab isDesktop={true} />
             <NavBarBtn isOpened={closeNav} onClick={handleBtnClick} />
           </DesktopHeaderContent>
           <SearchBar
@@ -50,10 +51,10 @@ const Layout = () => {
           <ContentWrapper>
             <Outlet />
           </ContentWrapper>
-          <DesktopNavBar isOpened={closeNav} isDesktop={false} />
         </Main>
       </PermanentVisibleContent>
       <FilterBarPortal isOpened={closeFilter} onClick={handleToogleFilter} />
+      <NavBarPortal isOpened={closeNav} isDesktop={false} />
     </StyledLayout>
   );
 };

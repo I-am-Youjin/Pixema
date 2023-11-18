@@ -11,7 +11,6 @@ export const StyledLayout = styled("div")`
 export const ContentWrapper = styled("div")`
   display: flex;
   width: 100%;
-  /* overflow-x: hidden; */
   overflow-y: auto;
   &::-webkit-scrollbar {
     display: none;
