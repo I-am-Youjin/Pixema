@@ -49,7 +49,7 @@ export type UserRoutes = {
   path: string;
   Component: React.FC<any>;
   componentAdditionalProps?: any;
-  strict?: boolean;
+  hiddenForLoggedInUser?: boolean;
   title?: string;
 };
 

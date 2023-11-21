@@ -12,6 +12,7 @@ import {
   NewPasswordWrapper,
   BtnsWrapper,
 } from "./styles";
+import { useNavigate } from "react-router-dom";
 import { useTypedSelector } from "../../../store/hooks/useTypedSelector";
 import { useActions } from "../../../store/hooks/useActions";
 import { ThemeModes } from "../../../styles/themes";
@@ -23,13 +24,13 @@ import {
   updateEmail,
   updateProfile,
   reauthenticateWithCredential,
-  signInWithEmailAndPassword,
   User,
   EmailAuthProvider,
+  verifyBeforeUpdateEmail,
+  signOut,
 } from "firebase/auth";
 import CustomBtn from "../../components/CustomBtn/CustomBtn";
 import { useSnackbar } from "notistack";
-import { useAuth } from "../../../store/hooks/useAuth";
 
 const SettingsPage = () => {
   const auth = getAuth();
@@ -45,9 +46,10 @@ const SettingsPage = () => {
 
   const stateUser = useTypedSelector((state) => state.user.email);
   const theme = useTypedSelector((state) => state.theme.themeMode);
-  const { toggleTheme, setUser } = useActions();
+  const { toggleTheme, setUser, clearFavorite, removeUser } = useActions();
   const [updateData, setUpdateData] = useState(defaultUser);
   const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
 
   const handleChangeTheme = () => {
     if (theme === "dark") {
@@ -68,84 +70,104 @@ const SettingsPage = () => {
     }
   };
 
-  const handleSave = () => {
-    // if (
-    //   updateData.password &&
-    //   updateData.newPassword &&
-    //   updateData.confirmPassword &&
-    //   updateData.password !== updateData.newPassword &&
-    //   updateData.newPassword === updateData.confirmPassword
-    // ) {
-    //   updatePassword(user as User, updateData.newPassword);
-    // }
+  const handleSave = async () => {
+    if (
+      updateData.password &&
+      updateData.newPassword &&
+      updateData.confirmPassword &&
+      updateData.password !== updateData.newPassword &&
+      updateData.newPassword === updateData.confirmPassword
+    ) {
+      const credential = EmailAuthProvider.credential(
+        user?.email as string,
+        updateData.password
+      );
+
+      await reauthenticateWithCredential(user as User, credential)
+        .then(() => {
+          updatePassword(user as User, updateData.newPassword);
+          enqueueSnackbar("Password has been update", {
+            variant: "success",
+          });
+        })
+        .catch(() => {
+          enqueueSnackbar("Wrong current password", {
+            variant: "error",
+          });
+        });
+    }
 
     if (
       updateData.password &&
-      updateData.name &&
-      updateData.name !== user?.displayName
+      updateData.newPassword &&
+      updateData.password === updateData.newPassword
     ) {
-      updateProfile(user as User, { displayName: updateData.name })
-        .then(() => {
-          signInWithEmailAndPassword(
-            auth,
-            updateData.email as string,
-            updateData.password
-          ).then((userCredential) => {
-            const user = userCredential.user;
-            handleSetUser();
-          });
-        })
-        .catch(() =>
-          enqueueSnackbar("Wrong password", {
-            variant: "error",
-          })
-        );
-    } else if (!updateData.password) {
-      enqueueSnackbar("Enter current password to apply the changes", {
+      enqueueSnackbar("Current password and new password match", {
         variant: "error",
       });
     }
 
-    // if (updateData.email && updateData.email !== user?.email) {
-    //   const credential = EmailAuthProvider.credential(
-    //     user?.email as string,
-    //     updateData.password
-    //   );
-    //   reauthenticateWithCredential(user as User, credential).then(() => {
-    //     updateEmail(auth.currentUser as User, updateData.email as string).then(
-    //       () => {
-    //         signInWithEmailAndPassword(
-    //           auth,
-    //           updateData.email as string,
-    //           updateData.password
-    //         ).then((userCredential) => {
-    //           const user = userCredential.user;
-    //           handleSetUser();
-    //         });
-    //       }
-    //     );
-    //   });
-    // } else if (!updateData.password) {
-    //   enqueueSnackbar("Enter current password to apply the changes", {
-    //     variant: "error",
-    //   });
-    // }
+    if (updateData.newPassword !== updateData.confirmPassword) {
+      enqueueSnackbar("Password confirmation faild", {
+        variant: "error",
+      });
+    }
 
-    // if (
-    //   updateData.password &&
-    //   updateData.newPassword &&
-    //   updateData.password === updateData.newPassword
-    // ) {
-    //   enqueueSnackbar("Current password and new password match", {
-    //     variant: "error",
-    //   });
-    // }
+    if (updateData.name && updateData.name !== user?.displayName) {
+      await updateProfile(user as User, { displayName: updateData.name });
+      enqueueSnackbar("User name has been changed.", {
+        variant: "success",
+      });
+      setUser({
+        name: updateData.name,
+        email: updateData.email,
+        token: (user as any)?.accessToken,
+        id: user?.uid,
+      });
+    }
 
-    // if (updateData.newPassword !== updateData.confirmPassword) {
-    //   enqueueSnackbar("Password confirmation faild", {
-    //     variant: "error",
-    //   });
-    // }
+    if (
+      updateData.password &&
+      updateData.email &&
+      updateData.email !== user?.email
+    ) {
+      const credential = EmailAuthProvider.credential(
+        user?.email as string,
+        updateData.newPassword ? updateData.newPassword : updateData.password
+      );
+      await reauthenticateWithCredential(user as User, credential)
+        .then(() => {
+          verifyBeforeUpdateEmail(
+            auth.currentUser as User,
+            updateData.email as string
+          ).then(() => {
+            if (user?.emailVerified) {
+              updateEmail(auth.currentUser as User, updateData.email as string)
+                .then(() => {
+                  enqueueSnackbar("Email update success.", {
+                    variant: "success",
+                  });
+                })
+                .catch(() => {
+                  signOut(auth);
+                  clearFavorite();
+                  enqueueSnackbar("Please, verify your email before update.", {
+                    variant: "success",
+                  });
+                  setTimeout(() => {
+                    navigate("/");
+                    window.location.reload();
+                  }, 3000);
+                });
+            }
+          });
+        })
+        .catch(() => {
+          enqueueSnackbar("Wrong current password.", {
+            variant: "error",
+          });
+        });
+    }
   };
 
   const handleChangeValue = (
@@ -164,6 +186,18 @@ const SettingsPage = () => {
       }
     );
   };
+
+  useEffect(() => {
+    if (user) {
+      setUpdateData({
+        name: user?.displayName,
+        email: user?.email,
+        password: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
+    }
+  }, [user]);
 
   return (
     <PageWrapper>

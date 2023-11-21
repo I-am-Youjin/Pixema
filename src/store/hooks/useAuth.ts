@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { userActions } from "../Actions/userActions";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
 export function useAuth() {
   const auth = getAuth();
@@ -9,16 +9,18 @@ export function useAuth() {
 
   const { email } = useSelector((state) => (state as any).user);
   if (!email) {
-    if (user?.emailVerified) {
-      dispatch(
-        userActions.setUser({
-          name: user.displayName,
-          email: user.email,
-          id: user.uid,
-          token: (user as any).accessToken,
-        })
-      );
-    }
-    console.log(user);
+    onAuthStateChanged(auth, (user) => {
+      if (user && user?.emailVerified) {
+        dispatch(
+          userActions.setUser({
+            name: user.displayName,
+            email: user.email,
+            id: user.uid,
+            token: (user as any).accessToken,
+          })
+        );
+        const uid = user.uid;
+      }
+    });
   }
 }

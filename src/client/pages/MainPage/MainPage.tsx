@@ -1,13 +1,9 @@
-import React from "react";
 import { FilmsWrapper, StyledWrapper, StyledText } from "./styles";
 import FilmCard from "../../components/FilmCard/FilmCard";
 import { useTypedSelector } from "../../../store/hooks/useTypedSelector";
 import { FilmBySearch } from "../../../types/types";
 import BtnShowMore from "../../components/BtnShowMore/BtnShowMore";
 import FilterTabs from "../../components/FilterTabs/FilterTabs";
-import { useActions } from "../../../store/hooks/useActions";
-import { getAuth, reauthenticateWithCredential } from "firebase/auth";
-import { useAuth } from "../../../store/hooks/useAuth";
 
 const MainPage = () => {
   const films = useTypedSelector((state) => state.films.allFilms);
@@ -16,21 +12,6 @@ const MainPage = () => {
   const year = useTypedSelector((state) => state.films.searchValue.y);
   const rating = useTypedSelector((state) => state.films.filmsRating);
   const sortBy = useTypedSelector((state) => state.filter.sortBy);
-  const { setUser } = useActions();
-
-  // const auth = getAuth();
-  // const user = auth.currentUser;
-  // console.log(user);
-
-  // if (user?.emailVerified) {
-  //   setUser({
-  //     name: user.displayName,
-  //     email: user.email,
-  //     id: user.uid,
-  //     token: (user as any).accessToken,
-  //   });
-  // }
-  useAuth();
 
   return (
     <div>

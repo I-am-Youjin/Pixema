@@ -17,18 +17,20 @@ import { useAuth } from "../../../store/hooks/useAuth";
 const UserTab: React.FC<IUserTab> = ({ isDesktop }) => {
   const stateUser = useTypedSelector((state) => state.user);
   const [openedUserActions, setOpenedUserActions] = useState(false);
-  const { removeUser, clearFavorite, setUser } = useActions();
+  const { removeUser, clearFavorite } = useActions();
   const navigate = useNavigate();
 
   const handleOpenProfileActions = () => {
     setOpenedUserActions(!openedUserActions);
   };
+
   const handleLogOut = async () => {
     const auth = getAuth();
     await signOut(auth);
     removeUser();
     clearFavorite();
   };
+
   const handleOpenSettings = () => {
     navigate("/settings");
   };

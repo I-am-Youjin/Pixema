@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const PageWrapper = styled("div")`
-  width: 100%;
+  width: 1186px;
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 export const Title = styled("p")`
   font-family: "Exo 2";
@@ -97,9 +98,11 @@ export const BtnsWrapper = styled("div")`
   display: flex;
   gap: 40px;
   margin-top: 48px;
+  max-width: 572px;
 
   @media (max-width: 768px) {
     gap: 32px;
+    max-width: 100%;
   }
   @media (max-width: 580px) {
     flex-direction: column;
