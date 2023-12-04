@@ -26,6 +26,7 @@ import Stack from "@mui/material/Stack";
 import debounce from "lodash.debounce";
 import { actionCodeSettings } from "./actionSignUpSettings";
 import { useNavigate } from "react-router-dom";
+import { enqueueSnackbar } from "notistack";
 
 const emptyUserData = {
   name: "",
@@ -68,6 +69,10 @@ const SignUpPage = () => {
           updateProfile(auth.currentUser as User, {
             displayName: signUpData.name,
           });
+          enqueueSnackbar("Check your email", { variant: "success" });
+          setTimeout(() => {
+            navigate("/");
+          }, 3000);
           setTimeout(() => {
             const auth = getAuth();
             const user = auth.currentUser;
